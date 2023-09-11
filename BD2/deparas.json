@@ -1,0 +1,86 @@
+{
+  "organizations": [
+    {
+      "name": "dpa",
+      "models": [
+        {
+          "name": "sellin_ibp",
+          "frequency": "monthly",
+          "forecast_filename": "forecast_wk202213_ibp.xlsx",
+          "files": [
+            {
+              "name": "tabela-produtos.xlsx",
+              "sheet": "PRODUTOS",
+              "type": "sku",
+              "column_depara": "De para Produtos",
+              "forecast_column": "de_para_mat_cod"
+            },
+            {
+              "name": "plantas-novo.xlsx",
+              "sheet": "Plantas",
+              "type": "cd",
+              "column_depara": "Cod Planta",
+              "forecast_column": "unid_ger_apo_forecast"
+            },
+            {
+              "name": "custlist.xlsx",
+              "sheet": "Sheet1",
+              "type": "uf",
+              "column_depara": "Estado",
+              "forecast_column": "uf"
+            }
+          ]
+        },
+        {
+          "name": "sellin_itp",
+          "frequency": "weekly",
+          "forecast_filename": "forecast_wk202212.xlsx",
+          "files": [
+            {
+              "name": "tabela-produtos.xlsx",
+              "sheet": "PRODUTOS",
+              "type": "sku",
+              "column_depara": "De para Produtos",
+              "forecast_column": "de_para_mat_cod"
+            },
+            {
+              "name": "plantas-novo.xlsx",
+              "sheet": "Plantas",
+              "type": "cd",
+              "column_depara": "Cod Planta",
+              "forecast_column": "unid_ger_apo_forecast"
+            },
+            {
+              "name": "custlist.xlsx",
+              "sheet": "Sheet1",
+              "type": "L4",
+              "column_depara": "COD L4",
+              "forecast_column": "ID L4"
+            }
+          ]
+        },
+        {
+          "name": "sellout",
+          "frequency": "weekly",
+          "forecast_filename": "forecast_sellout_18022022.csv",
+          "files": [
+            {
+              "name": "tabela-produtos.xlsx",
+              "sheet": "PRODUTOS",
+              "type": "sku",
+              "column_depara": "De para Produtos",
+              "forecast_column": "sku"
+            },
+            {
+              "name": "custlist.xlsx",
+              "sheet": "Sheet1",
+              "type": "distribuidor",
+              "column_depara": "Sold",
+              "forecast_column": "distrib"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

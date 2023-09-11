@@ -1,0 +1,133 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int vetor_num_accessed[100000];
+
+typedef struct no
+{
+    int Pi;
+    struct no *prox;
+} no;
+
+typedef struct lista_st
+{
+    no *head;
+    int count;
+} lista_st;
+
+void LEinit(lista_st *lista)
+{
+    lista->head = NULL;
+    lista->count = 0;
+}
+
+void LEinsert(lista_st *lista, int Pi)
+{
+    no *l = malloc(sizeof(no));
+    l->Pi = Pi;
+    l->prox = lista->head;
+    lista->head = l;
+    lista->count++;
+}
+
+void LEshow(lista_st *lista)
+{
+    no *aux = lista->head;
+    while (aux != NULL)
+    {
+        printf("%d\n", aux->Pi);
+        aux = aux->prox;
+    }
+}
+
+void LEremoveFirst(lista_st *lista)
+{
+    no *aux = lista->head;
+    while (1)
+    {
+        if (aux->prox->prox == NULL)
+        {
+            aux->prox = NULL;
+            break;
+        }
+        aux = aux->prox;
+    }
+    lista->count--;
+}
+
+int LEsearch(lista_st *lista, int x)
+{
+    no *aux = lista->head;
+    while (aux != NULL)
+    {
+        if (aux->Pi == x)
+            return 1;
+        aux = aux->prox;
+    }
+    return 0;
+}
+
+int LElength(lista_st *lista)
+{
+    return lista->count;
+}
+
+int main(void)
+{
+    int numbers_to_access, tam_bloco, num_inserts = 0, menor_numero_pags = 0, maior_num_pf = 0;
+    int hasAnomalia = 0;
+
+    scanf("%d", &numbers_to_access);
+    lista_st lista;
+    for (int i = 0; i < numbers_to_access; i++)
+    {
+        scanf("%d", &vetor_num_accessed[i]);
+    }
+    while (scanf("%d", &tam_bloco) != EOF)
+    {
+        LEinit(&lista);
+        int contador_insert_init = 0;
+        while (contador_insert_init < numbers_to_access)
+        {
+            if (num_inserts < tam_bloco)
+            {
+                if (!LEsearch(&lista, vetor_num_accessed[contador_insert_init]))
+                {
+                    LEinsert(&lista, vetor_num_accessed[contador_insert_init]);
+                    num_inserts++;
+                }
+            }
+            else
+            {
+                if (!LEsearch(&lista, vetor_num_accessed[contador_insert_init]))
+                {
+                    LEremoveFirst(&lista);
+                    LEinsert(&lista, vetor_num_accessed[contador_insert_init]);
+                    num_inserts++;
+                }
+            }
+            contador_insert_init++;
+        }
+        printf("%d %d\n", tam_bloco, num_inserts);
+        int num_page_faults = num_inserts;
+        num_inserts = 0;
+        if (maior_num_pf == 0)
+        {
+            maior_num_pf = num_page_faults;
+            menor_numero_pags = tam_bloco;
+        }
+        else
+        {
+            int hasMorePf = num_page_faults > maior_num_pf;
+            int isSizeOfblocoBiggerThanMenor = tam_bloco > menor_numero_pags;
+            if (hasMorePf && isSizeOfblocoBiggerThanMenor)
+                hasAnomalia = 1;
+        }
+    }
+    if (hasAnomalia)
+        printf("Belady detectado\n");
+    else
+        printf("Sem anomalia\n");
+
+    return 0;
+}

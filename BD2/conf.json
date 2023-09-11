@@ -1,0 +1,108 @@
+{
+  "organizations": [
+    {
+      "name": "dpa",
+      "models": [
+        {
+          "name": "sellin_ibp",
+          "frequency": "monthly",
+          "files": [
+            {
+              "path": "gs://lift-temp/dpa_sellin",
+              "name": "forecast_wk202213_ibp.xlsx",
+              "columns": [
+                {
+                  "name": "unid_ger_apo_forecast",
+                  "type": "reference",
+                  "depara_file": {
+                    "name": "plantas-novo.xlsx",
+                    "sheet": "Plantas",
+                    "type": "cd",
+                    "column_depara": "Cod Planta",
+                    "forecast_column": "unid_ger_apo_forecast"
+                  }
+                },
+                {
+                  "name": "de_para_mat_cod",
+                  "type": "reference"
+                },
+                {
+                  "name": "uf",
+                  "type": "reference"
+                },
+                {
+                  "name": "year_month",
+                  "type": "date"
+                },
+                {
+                  "name": "value_conservador",
+                  "type": "forecast"
+                },
+                {
+                  "name": "value_otimista",
+                  "type": "forecast"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "sellin_itp",
+          "frequency": "weekly",
+          "files": [
+            {
+              "path": "gs://lift-temp/dpa_sellin",
+              "name": "forecast_wk202212.xlsx",
+              "columns": [
+                {
+                  "name": "unid_ger_apo_forecast",
+                  "type": "reference"
+                },
+                {
+                  "name": "de_para_mat_cod",
+                  "type": "reference"
+                },
+                {
+                  "name": "wk",
+                  "type": "date"
+                },
+                {
+                  "name": "value",
+                  "type": "forecast"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "sellout",
+          "frequency": "weekly",
+          "files": [
+            {
+              "path": "gs://lift-temp/dpa_sellin",
+              "name": "forecast_sellout_18022022.csv",
+              "columns": [
+                {
+                  "name": "distrib",
+                  "type": "reference"
+                },
+                {
+                  "name": "sku",
+                  "type": "reference"
+                },
+                {
+                  "name": "data_venda",
+                  "type": "date"
+                },
+                {
+                  "name": "forecast_un",
+                  "type": "forecast"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
