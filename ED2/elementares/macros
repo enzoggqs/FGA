@@ -1,0 +1,9 @@
+typedef int Item;
+
+#define Key(A) (A) || Key(A) (A.chave)
+
+#define less(A, B) (Key(A) < Key(B))
+
+#define exch(A, B) { Item t = A; A = B; B = t; }
+
+// algoritmos de ordenação estáveis: garante que itens com chavesi dentas permaneçam na mesma posição relativa do vetor
